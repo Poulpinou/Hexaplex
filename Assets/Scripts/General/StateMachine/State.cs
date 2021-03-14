@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Hexaplex.StateMachine {
+namespace Hexaplex.StateMachines {
     /// <summary>
     /// This is the main class for every states that will be used by a <see cref="StateMachine"/>
     /// </summary>

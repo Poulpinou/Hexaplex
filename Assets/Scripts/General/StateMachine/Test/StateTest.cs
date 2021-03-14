@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Hexaplex.StateMachine {
+namespace Hexaplex.StateMachines {
 	public class StateTest : MonoBehaviour
     {
         public class TestState : State

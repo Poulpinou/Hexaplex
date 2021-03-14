@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Hexaplex.StateMachine {
+namespace Hexaplex.StateMachines {
 	public class StateHistory
     {
         public readonly int maxCount;

@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 using System;
 
-namespace Hexaplex.StateMachine {
+namespace Hexaplex.StateMachines {
     /// <summary>
     /// Basic state machine with history, override it for more complex behaviours
     /// </summary>
@@ -35,13 +35,13 @@ namespace Hexaplex.StateMachine {
         /// <summary>
         /// Override this property with your default <see cref="State"/> if you need one
         /// </summary>
-        protected State DefaultState => null;
+        protected virtual State DefaultState => null;
 
         /// <summary>
         /// Override this property with the <see cref="Type"/> of the parent of every <see cref="State"/>
         /// handled by your <see cref="StateMachine"/>. Other <see cref="State"/>s will throw an Exception.
         /// </summary>
-        protected Type ConstraintType => null;
+        protected virtual Type ConstraintType => null;
         #endregion
 
 
@@ -61,9 +61,9 @@ namespace Hexaplex.StateMachine {
         /// <param name="state">The new state</param>
         public void ChangeState(State state)
         {
-            if (ConstraintType != null && state.GetType() != ConstraintType)
+            if (ConstraintType != null && !ConstraintType.IsAssignableFrom(state.GetType()))
             {
-                throw new Exception(string.Format("Impossible to change state to {0}: only {1} are allowed", state.GetType().Name, ConstraintType.Name));
+                throw new Exception(string.Format("Impossible to change state to {0}: only {1}s are allowed", state.GetType().Name, ConstraintType.Name));
             }
 
             TransitionToNewState(state);
