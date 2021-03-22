@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 
-namespace Hexaplex {
+namespace Hexaplex.Battles.UI {
 	public class BattleBanner : MonoBehaviour
     {
         [SerializeField]
@@ -12,6 +12,7 @@ namespace Hexaplex {
 
         [SerializeField]
         private Image background;
+
 
         public void DrawText(string text, Action callback = null) {
             Init();

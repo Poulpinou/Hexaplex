@@ -18,16 +18,16 @@ namespace Hexaplex.StateMachines {
         public virtual bool Reversable => false;
 
 
-        internal virtual void Enter(StateMachine owner) {
+        internal virtual void Enter(StateMachine owner, State previousState) {
             Owner = owner;
-            OnEnter();
+            OnEnter(previousState);
         }
 
-        internal void Exit() => OnExit();
+        internal void Exit(State nextState) => OnExit(nextState);
 
-        protected abstract void OnEnter();
+        protected abstract void OnEnter(State previousState);
 
-        protected abstract void OnExit();
+        protected abstract void OnExit(State nextState);
     }
 
 
@@ -40,13 +40,13 @@ namespace Hexaplex.StateMachines {
     {
         public new T Owner => base.Owner as T;
 
-        internal override sealed void Enter(StateMachine owner)
+        internal override sealed void Enter(StateMachine owner, State previousState)
         {
             if(!(owner is T))
             {
                 Debug.LogErrorFormat("The owner of a {0} should be a {1} but a {2} has been provided!", GetType().Name, typeof(T).Name, owner.GetType().Name);
             }
-            base.Enter(owner);
+            base.Enter(owner, previousState);
         }
     }
 }

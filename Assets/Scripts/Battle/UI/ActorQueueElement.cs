@@ -22,17 +22,21 @@ namespace Hexaplex.Battles.UI {
             actorPictureImage.sprite = null;
             actorNameText.text = "";
             progressSlider.value = 0;
-        }
-
-        protected override void OnInitDisplay()
-        {
-            actorNameText.text = Data.ActorRef.Actor.Name;
-            actorPictureImage.sprite = Data.ActorRef.Actor.Picture;
-        }
+        } 
 
         protected override void OnRefreshDisplay()
         {
+            actorNameText.text = Data.ActorRef.Actor.Name;
+            actorPictureImage.sprite = Data.ActorRef.Actor.Picture;
             progressSlider.value = Data.Progress;
+        }
+
+        protected override void OnShow()
+        {
+        }
+
+        protected override void OnHide()
+        {
         }
     }
 }

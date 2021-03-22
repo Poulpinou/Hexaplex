@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hexaplex.Battles {
-    public class ActorSelectionState : BattleState
+    public class EndCheckState : BattleState
     {
         protected override void OnEnter(BattleState previousState)
         {
-            Owner.ActorQueue.ComputeNext();
-
-            LeanTween.delayedCall(1, () =>
+            // Temporary rule, just for testing purpose
+            if(Time.realtimeSinceStartup > 60)
             {
-                Owner.ChangeState(new ActorPlayingState(Owner.ActorQueue.First));
-            });
+                Owner.ChangeState<EndBattleState>();
+            }
+            else {
+                Owner.ChangeState<ActorSelectionState>();
+            }
         }
 
         protected override void OnExit(BattleState nextState)
         {
-            
         }
     }
 }

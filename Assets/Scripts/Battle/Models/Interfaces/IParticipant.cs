@@ -14,7 +14,8 @@ namespace Hexaplex.Battles {
     {
         public static bool IsControlledByPlayer(this IParticipant participant)
         {
-            return participant.ControllerType == ControllerType.CurrentPlayer;
+            return participant.ControllerType == ControllerType.CurrentPlayer 
+                || participant.ControllerType == ControllerType.SimulatedPlayer;
         }
     }
 }

@@ -5,13 +5,24 @@ using UnityEngine.UI;
 using Hexaplex.UI;
 
 namespace Hexaplex.Battles.UI {
+    [RequireComponent(typeof(RectTransform))]
     public class ActorQueueDisplay : DataDisplay<ActorQueue>
     {
+        [Header("Relations")]
         [SerializeField]
         private LayoutGroup elementsParent;
 
         [SerializeField]
         private ActorQueueElement elementModel;
+
+
+        [Header("Animation")]
+        [SerializeField]
+        private Vector2 closedPosition;
+
+        [SerializeField]
+        private Vector2 openedPosition;
+
 
         protected override void OnClearDisplay()
         {
@@ -19,7 +30,7 @@ namespace Hexaplex.Battles.UI {
             {
                 Destroy(element.gameObject);
             }
-        }
+        }     
 
         protected override void OnInitDisplay()
         {
@@ -28,6 +39,8 @@ namespace Hexaplex.Battles.UI {
                 ActorQueueElement element = Instantiate(elementModel, elementsParent.transform);
                 element.Data = actorProgress;
             }
+
+            OnRefreshDisplay();
         }
 
         protected override void OnRefreshDisplay()
@@ -40,11 +53,20 @@ namespace Hexaplex.Battles.UI {
             }
         }
 
-        private void Start()
+        protected override void OnShow()
         {
-            BattleManager.BattleController.OnStateChanged.AddListener(delegate {
-                Data = BattleManager.BattleController.ActorQueue;
-            });
+            RectTransform.anchoredPosition = closedPosition;
+
+            LeanTween.move(RectTransform, openedPosition, 0.5f)
+                .setOnComplete(() => RectTransform.anchoredPosition = openedPosition);
+        }
+
+        protected override void OnHide()
+        {
+            RectTransform.anchoredPosition = openedPosition;
+
+            LeanTween.move(RectTransform, closedPosition, 0.5f)
+                .setOnComplete(() => RectTransform.anchoredPosition = closedPosition);
         }
     }
 }

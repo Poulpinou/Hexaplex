@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: TestOpponent
   m_EditorClassIdentifier: 
   displayName: Bertrand Cheur
+  picture: {fileID: -8650984423010251426, guid: 98c337021514e6d438138029cd792387,
+    type: 3}
   controllerType: 2

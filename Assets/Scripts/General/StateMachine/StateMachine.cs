@@ -96,11 +96,11 @@ namespace Hexaplex.StateMachines {
         private void TransitionToNewState(State newState, bool handleHistory = true)
         {
             State lastState = currentState;
-            lastState?.Exit();
+            lastState?.Exit(newState);
 
             currentState = newState;
 
-            currentState?.Enter(this);
+            currentState?.Enter(this, lastState);
 
             if (handleHistory)
             {

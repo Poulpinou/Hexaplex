@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     name: Test Cube
-    size: 4
+    size: 6
     theme: {fileID: 11400000, guid: 6307cab6156638e4580afab4dc9a740f, type: 2}

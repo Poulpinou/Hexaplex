@@ -81,7 +81,7 @@ MonoBehaviour:
   buildOnAwake: 1
   blocksContainer: {fileID: 1685064195863240776}
   gridsContainer: {fileID: 5902667602392260422}
-  objectsContainer: {fileID: 0}
+  objectsContainer: {fileID: 6394852094408373061}
 --- !u!114 &126853429
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -24,12 +24,12 @@ namespace Hexaplex.StateMachines {
             public TestState() => new TestState(0, false);
 
 
-            protected override void OnEnter()
+            protected override void OnEnter(State previousState)
             {
                 Debug.LogFormat("Entering in State #{0}", order);
             }
 
-            protected override void OnExit()
+            protected override void OnExit(State nextState)
             {
                 Debug.LogFormat("Exiting State #{0}", order);
             }

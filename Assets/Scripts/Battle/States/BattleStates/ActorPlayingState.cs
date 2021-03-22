@@ -5,22 +5,22 @@ using UnityEngine;
 namespace Hexaplex.Battles {
     public class ActorPlayingState : BattleState
     {
-        public ActorRef CurrentActor { get; private set; }
+        private ActorRef currentActor;
+
+        private ActorTurnController turnController;
 
 
         public ActorPlayingState(ActorRef actorRef)
         {
-            CurrentActor = actorRef;
+            currentActor = actorRef;
+            turnController = BattleManager.CharacterTurnController;
         }
 
-        protected override void OnEnter()
+        protected override void OnEnter(BattleState previousState)
         {
-            BattleManager.UI.BattleBanner.DrawText(string.Format("Tour de {0}", CurrentActor.Actor.Name));
+            turnController.StartTurn(currentActor, Owner.ChangeState<EndCheckState>);
         }
 
-        protected override void OnExit()
-        {
-            throw new System.NotImplementedException();
-        }
+        protected override void OnExit(BattleState nextState) { }
     }
 }
