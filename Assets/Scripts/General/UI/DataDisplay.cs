@@ -4,6 +4,8 @@ namespace Hexaplex.UI {
     public abstract class DataDisplay : UIComponent {
         protected virtual bool HideOnNullData => true;
 
+        protected virtual bool ShowOnSetData => false;
+
         public abstract void RefreshDisplay();
 
         public virtual void ClearDisplay() => OnClearDisplay();
@@ -41,7 +43,9 @@ namespace Hexaplex.UI {
                     }
 
                     InitDisplay();
-                    IsDisplayed = true;
+                    if (ShowOnSetData) {
+                        IsDisplayed = true;
+                    }
                 }
                 else if(HideOnNullData)
                 {
@@ -65,5 +69,14 @@ namespace Hexaplex.UI {
                 OnRefreshDisplay();
             }
         }
+
+       /* protected override void Awake()
+        {
+            base.Awake();
+
+            if (HideOnNullData && Data == null) {
+                IsDisplayed = false;
+            }
+        }*/
     }
 }

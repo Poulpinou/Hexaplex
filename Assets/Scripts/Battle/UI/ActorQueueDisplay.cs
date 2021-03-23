@@ -24,6 +24,9 @@ namespace Hexaplex.Battles.UI {
         private Vector2 openedPosition;
 
 
+        private ActorQueueElement[] elements;
+
+
         protected override void OnClearDisplay()
         {
             foreach (ActorQueueElement element in elementsParent.GetComponentsInChildren<ActorQueueElement>())
@@ -34,22 +37,25 @@ namespace Hexaplex.Battles.UI {
 
         protected override void OnInitDisplay()
         {
-            foreach (ActorProgress actorProgress in data.ActorProgresses)
+            List<ActorQueueElement> elementList = new List<ActorQueueElement>();
+            foreach (ActorRef actor in data.PredictedOrder)
             {
                 ActorQueueElement element = Instantiate(elementModel, elementsParent.transform);
-                element.Data = actorProgress;
+                element.Data = actor;
+                elementList.Add(element);
             }
+
+            elements = elementList.ToArray();
 
             OnRefreshDisplay();
         }
 
         protected override void OnRefreshDisplay()
         {
-            List<ActorProgress> progresses = data.ActorProgresses;
-
-            foreach(ActorQueueElement element in elementsParent.GetComponentsInChildren<ActorQueueElement>())
+            ActorRef[] order = Data.PredictedOrder;
+            for (int i = 0; i < elements.Length; i++)
             {
-                element.transform.SetSiblingIndex(progresses.IndexOf(element.Data));
+                elements[i].Data = order[i];
             }
         }
 

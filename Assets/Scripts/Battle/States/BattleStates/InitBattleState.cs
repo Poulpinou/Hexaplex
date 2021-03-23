@@ -16,8 +16,6 @@ namespace Hexaplex.Battles {
                 throw new System.NotImplementedException("Battles with more than two participants are not implementd yet.");
             }
 
-            BattleManager.UI.ActorQueueDisplay.Data = Owner.ActorQueue;
-
             BattleManager.UI.BattleBanner.DrawText(
                 string.Format("{0} VS {1}", Battle.Sides[0].Participant.Name, Battle.Sides[1].Participant.Name),
                 () => Owner.ChangeState<ActorSelectionState>()

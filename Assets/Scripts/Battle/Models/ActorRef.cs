@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Hexaplex.Battles {
-	public class ActorRef : MonoBehaviour
+	public class ActorRef
     {
         public IActor Actor { get; private set; }
 

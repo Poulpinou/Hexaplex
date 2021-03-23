@@ -8,7 +8,7 @@ using Hexaplex.UI;
 namespace Hexaplex.Battles.UI {
 	public class EndTurnButton : UIComponent
     {
-        [Header("Realations")]
+        [Header("Relations")]
         [SerializeField]
         private Button button;
 
