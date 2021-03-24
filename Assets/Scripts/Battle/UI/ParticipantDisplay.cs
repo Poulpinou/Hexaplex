@@ -19,14 +19,6 @@ namespace Hexaplex.Battles.UI {
         private Image border;
 
 
-        [Header("Border Colors")]
-        [SerializeField]
-        private Color borderColorControlled;
-
-        [SerializeField]
-        private Color borderColorNotControlled;
-
-
         [Header("Animations")]
         [SerializeField]
         private Translate showHideAnimation;
@@ -42,7 +34,7 @@ namespace Hexaplex.Battles.UI {
         {
             pictureImage.sprite = Data.Picture;
             nameText.text = Data.Name;
-            border.color = Data.ControllerType == ControllerType.CurrentPlayer ? borderColorControlled : borderColorNotControlled;
+            border.color = Data.ControllerType == ControllerType.CurrentPlayer ? Settings.Battle.SelfColor : Settings.Battle.EnemyColor;
         }
 
         protected override void OnShow()
