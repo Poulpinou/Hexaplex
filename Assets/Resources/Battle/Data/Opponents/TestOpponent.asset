@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d8950312c3f2b54c8a51a1b658ba127, type: 3}
-  m_Name: TestCubeSettings
+  m_Script: {fileID: 11500000, guid: a928bbd6d6917df41ae2fc3a89469272, type: 3}
+  m_Name: TestOpponent
   m_EditorClassIdentifier: 
-  settings:
-    name: Test Cube
-    size: 6
-    theme: {fileID: 11400000, guid: 6307cab6156638e4580afab4dc9a740f, type: 2}
+  displayName: Bertrand Cheur
+  picture: {fileID: -8650984423010251426, guid: 98c337021514e6d438138029cd792387,
+    type: 3}
+  controllerType: 2
