@@ -6,10 +6,6 @@ using System.Linq;
 namespace Hexaplex.Battles {
     public class ActorQueue : IListenableData
     { 
-        // TODO: Export it in global configuration
-        private const int PREDICTED_TURNS_AMOUNT = 10;
-
-
         private readonly List<ActorInQueue> actorsInQueue;
 
         private readonly List<ActorRef> predictedOrder = new List<ActorRef>();
@@ -55,8 +51,6 @@ namespace Hexaplex.Battles {
             // Choose new current from real progress
             current = actorsInQueue.OrderByDescending(a => a.RealProgress).First();
 
-            Debug.LogFormat("{0} is in [{1}]?", current.Actor.Actor.Name, string.Join(",", predictedOrder.Select(a => a.Actor.Name)));
-
             // If predicted is equal tu current...
             if (predictedOrder.Count > 0 && predictedOrder[0] == current.Actor)
             {
@@ -88,7 +82,7 @@ namespace Hexaplex.Battles {
             float maxSpeed = actorsInQueue.Max(actors => actors.Actor.Actor.Speed);
 
             ActorInQueue current = actorsInQueue.OrderByDescending(a => a.PredictedProgress).First();
-            while (predictedOrder.Count < PREDICTED_TURNS_AMOUNT) {
+            while (predictedOrder.Count < Settings.Battle.QueueLength) {
                 current.PredictedProgress--;
 
                 if (!actorsInQueue.Any(a => a.PredictedProgress >= 1)) {
